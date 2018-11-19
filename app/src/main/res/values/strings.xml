@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">StudentHelper</string>
+    <string name="login_title">Вхід</string>
+    <string name="login_text">Логін</string>
+    <string name="password">Пароль</string>
+    <string name="log_btn_text">Ввійти</string>
+    <string name="open_reg_text">Зареєструватись</string>
+    <string name="google">Google</string>
+    <string name="registration_title_text">Реєстація</string>
+    <string name="btn_registration_text">Зареєструватись</string>
 </resources>
