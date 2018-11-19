@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "241265754133",
+    "firebase_url": "https://studenthelper-e87cb.firebaseio.com",
+    "project_id": "studenthelper-e87cb",
+    "storage_bucket": "studenthelper-e87cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241265754133:android:993f4ac7e3c1b9a2",
+        "android_client_info": {
+          "package_name": "com.example.divin.studenthelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241265754133-deibkcdrghab6qifopedgn0n9tf37p8u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.divin.studenthelper",
+            "certificate_hash": "b3e4f51697a29bf2526bf4e31c9709a5541fc715"
+          }
+        },
+        {
+          "client_id": "241265754133-ne1navo1iv4l8ockpqhcd4f92gpvtt8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvCO175e5bRwpnIZmylbwk-uZyjD3Xr1c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241265754133-ne1navo1iv4l8ockpqhcd4f92gpvtt8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
