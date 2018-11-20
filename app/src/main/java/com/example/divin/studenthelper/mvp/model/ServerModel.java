@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.example.divin.studenthelper.callback.ISynchronizeCallback;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
 
@@ -41,48 +42,38 @@ public class ServerModel {
             }
         });
     }
-}
-/*
-Observer<Void> observer = new Observer<Void>() {
+
+    void checkDatabaseVersion(ISynchronizeCallback iSynchronizeCallback) {
+        Observer<Integer> observer = new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
-
             }
 
             @Override
-            public void onNext(Void aVoid) {
-                iserverSender.addUserToDatabases(mail, name, id).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        if(response.isSuccessful()){
-                            Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-
-                    }
-                });
+            public void onNext(Integer integer) {
+                iSynchronizeCallback.setDatabaseVersion(integer);
             }
 
             @Override
             public void onError(Throwable e) {
-
             }
 
             @Override
             public void onComplete() {
-
             }
         };
-        Observable<Void> observable = new Observable<Void>() {
-            @Override
-            protected void subscribeActual(Observer<? super Void> observer) {
-                observer.onNext(Void);
-            }
-        };
-        observable
+        iserverSender
+                .getServerDbVersion()
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
- */
+
+    public void installNewDatabase() {
+
+    }
+}
+
+
+
+

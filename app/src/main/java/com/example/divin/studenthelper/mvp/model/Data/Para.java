@@ -1,52 +1,18 @@
 package com.example.divin.studenthelper.mvp.model.Data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "Para")
 public class Para {
-    private int id;
-    private int kodPredm;
-    private int kodTeacher;
-    private String timeStart;
-    private String timeEnd;
 
-    public Para() {
-    }
+    @PrimaryKey(autoGenerate = true)
+    public int id;
 
-    public int getId() {
-        return id;
-    }
+    public int kodPredm;
+    public int kodTeacher;
+    public String timeStart;
+    public String timeEnd;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public int getKodPredm() {
-        return kodPredm;
-    }
-
-    public void setKodPredm(int kodPredm) {
-        this.kodPredm = kodPredm;
-    }
-
-    public int getKodTeacher() {
-        return kodTeacher;
-    }
-
-    public void setKodTeacher(int kodTeacher) {
-        this.kodTeacher = kodTeacher;
-    }
-
-    public String getTimeStart() {
-        return timeStart;
-    }
-
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
-    }
-
-    public String getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
-    }
 }

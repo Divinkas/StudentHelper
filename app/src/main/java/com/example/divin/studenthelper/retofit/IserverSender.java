@@ -20,5 +20,6 @@ public interface IserverSender {
                                 @Field("name") String name,
                                 @Field("ident") String ident);
 
-
+    @GET("/Database/Versiondb")
+    Observable<Integer> getServerDbVersion();
 }

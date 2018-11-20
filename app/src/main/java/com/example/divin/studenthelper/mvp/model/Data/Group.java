@@ -1,34 +1,14 @@
 package com.example.divin.studenthelper.mvp.model.Data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "Group")
 public class Group {
-    private int id;
-    private int Name;
-    private int kodFacult;
 
-    public Group() {
-    }
+    @PrimaryKey(autoGenerate = true)
+    public int id;
 
-    public int getId() {
-        return id;
-    }
+    public int Name;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getName() {
-        return Name;
-    }
-
-    public void setName(int name) {
-        Name = name;
-    }
-
-    public int getKodFacult() {
-        return kodFacult;
-    }
-
-    public void setKodFacult(int kodFacult) {
-        this.kodFacult = kodFacult;
-    }
 }

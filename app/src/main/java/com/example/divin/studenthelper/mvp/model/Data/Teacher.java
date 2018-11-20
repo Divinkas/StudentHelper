@@ -1,9 +1,16 @@
 package com.example.divin.studenthelper.mvp.model.Data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "Teacher")
 public class Teacher {
-    private int id;
-    private String PIB;
-    private String image;
-    private String mail;
-    private double rating;
+
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+
+    public String PIB;
+    public String image;
+    public String mail;
+    public double rating;
 }

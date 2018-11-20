@@ -1,79 +1,20 @@
 package com.example.divin.studenthelper.mvp.model.Data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "Rozklad")
 public class Rozklad {
-    private int id;
-    private int kodDay;
-    private int kodNamePredm;
-    private int kodTypeZn;
-    private int kodPara;
-    private int kodCategoryStudents;
-    private String auditoriya;
-    private boolean isActive;
 
-    public Rozklad() {
-    }
+    @PrimaryKey(autoGenerate = true)
+    public int id;
 
-    public int getId() {
-        return id;
-    }
+    public int kodDay;
+    public int kodNamePredm;
+    public int kodTypeZn;
+    public int kodPara;
+    public int kodCategoryStudents;
+    public String auditoriya;
+    public boolean isActive;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getKodDay() {
-        return kodDay;
-    }
-
-    public void setKodDay(int kodDay) {
-        this.kodDay = kodDay;
-    }
-
-    public int getKodNamePredm() {
-        return kodNamePredm;
-    }
-
-    public void setKodNamePredm(int kodNamePredm) {
-        this.kodNamePredm = kodNamePredm;
-    }
-
-    public int getKodTypeZn() {
-        return kodTypeZn;
-    }
-
-    public void setKodTypeZn(int kodTypeZn) {
-        this.kodTypeZn = kodTypeZn;
-    }
-
-    public int getKodPara() {
-        return kodPara;
-    }
-
-    public void setKodPara(int kodPara) {
-        this.kodPara = kodPara;
-    }
-
-    public int getKodCategoryStudents() {
-        return kodCategoryStudents;
-    }
-
-    public void setKodCategoryStudents(int kodCategoryStudents) {
-        this.kodCategoryStudents = kodCategoryStudents;
-    }
-
-    public String getAuditoriya() {
-        return auditoriya;
-    }
-
-    public void setAuditoriya(String auditoriya) {
-        this.auditoriya = auditoriya;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 }
