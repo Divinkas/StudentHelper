@@ -1,5 +1,8 @@
 package com.example.divin.studenthelper.retofit;
 
+import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
+import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -22,4 +25,10 @@ public interface IserverSender {
 
     @GET("/Database/Versiondb")
     Observable<Integer> getServerDbVersion();
+
+    @FormUrlEncoded
+    @POST("Rozklad/GetRozkladByGroupId")
+    Observable<Rozklad_server_object> getRozklad(@Field("idGroup") int id, @Field("kodWeek") int kodWeek);
+
+
 }

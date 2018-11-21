@@ -36,6 +36,8 @@ public class MainActivity extends MvpAppCompatActivity implements IrozkladView {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         tvName.setText(user.getDisplayName());
+
+        rozkladPresenter.loadRozklad();
     }
 
     @Override

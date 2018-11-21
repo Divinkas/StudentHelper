@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class TypeZn {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
 
-    private String Name;
+    public String Name;
 }

@@ -5,8 +5,12 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
+import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
+import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -44,33 +48,41 @@ public class ServerModel {
     }
 
     void checkDatabaseVersion(ISynchronizeCallback iSynchronizeCallback) {
-        Observer<Integer> observer = new Observer<Integer>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-            }
 
-            @Override
-            public void onNext(Integer integer) {
-                iSynchronizeCallback.setDatabaseVersion(integer);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-            }
-
-            @Override
-            public void onComplete() {
-            }
-        };
-        iserverSender
-                .getServerDbVersion()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
     }
 
     public void installNewDatabase() {
 
+    }
+
+    public void loadRozklad(){
+        Observer<Rozklad_server_object> observer = new Observer<Rozklad_server_object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Rozklad_server_object rozklad_server_object) {
+
+                List<RozkladObj> rozkladObjs = rozklad_server_object.rozkladObj;
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getRozklad(1,1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }
 
