@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
+import com.example.divin.studenthelper.utils.DataHelper;
 
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class ServerModel {
 
     }
 
-    public void loadRozklad(){
+    public void loadRozklad(ILoadRozkladCallback iLoadRozkladCallback){
         Observer<Rozklad_server_object> observer = new Observer<Rozklad_server_object>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -64,8 +66,8 @@ public class ServerModel {
 
             @Override
             public void onNext(Rozklad_server_object rozklad_server_object) {
-
-                List<RozkladObj> rozkladObjs = rozklad_server_object.rozkladObj;
+                DataHelper dataHelper = new DataHelper();
+                iLoadRozkladCallback.loadData(dataHelper.getRozkladObeckts(rozklad_server_object.rozkladObj));
             }
 
             @Override
