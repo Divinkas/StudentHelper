@@ -64,4 +64,8 @@ public class FirebaseModel {
         assert user != null;
         return user.getDisplayName();
     }
+
+    public void exit() {
+        FirebaseAuth.getInstance().signOut();
+    }
 }

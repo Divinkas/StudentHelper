@@ -39,8 +39,10 @@ public class MainActivity extends BaseActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
 
-        fragmentViewer = new FragmentViewer(this);
-        installMatherialMenu = new InstallMatherialMenu(MainActivity.this, toolbar, drawerLayout,
+        if(savedInstanceState == null) {
+            fragmentViewer = new FragmentViewer(this);
+        }
+        installMatherialMenu = new InstallMatherialMenu(this,MainActivity.this, toolbar, drawerLayout,
                         myNavigationView, fragmentContainer, R.string.app_name, fragmentViewer);
     }
 

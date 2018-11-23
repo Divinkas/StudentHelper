@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/test"
-        android:title="@string/Text"
+        android:id="@+id/menuRozklad"
+        android:title="@string/rozklad"
+        android:icon="@drawable/format_align_justify"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menuTesting"
+        android:title="@string/testing"
+        android:icon="@drawable/learn"
+        />
+    <item
+        android:id="@+id/menuTeachers"
+        android:title="@string/teachers"
+        android:icon="@drawable/account_multiple_check"
+        />
+    <group
+        android:id="@+id/menuFirebaseGroup">
+        <item
+            android:id="@+id/menuSetting"
+            android:title="@string/setting"
+            android:icon="@drawable/settings"
+            />
+    </group>
+    <item
+        android:id="@+id/menuExit"
+        android:title="@string/exit"
+        android:icon="@drawable/exit_run"
         />
 </menu>

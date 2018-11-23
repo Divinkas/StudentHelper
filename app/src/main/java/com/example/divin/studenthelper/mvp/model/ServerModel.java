@@ -38,8 +38,8 @@ public class ServerModel {
         iserverSender.addUserToDatabases(mail, name, id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful())
-                    Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
+//                if (response.isSuccessful())
+//                    Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
             }
 
             @Override

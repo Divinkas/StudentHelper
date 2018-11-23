@@ -9,4 +9,9 @@
     <string name="registration_title_text">Реєстація</string>
     <string name="btn_registration_text">Зареєструватись</string>
     <string name="Text">test_text</string>
+    <string name="rozklad">Розклад</string>
+    <string name="exit">Вихід</string>
+    <string name="testing">Тестування</string>
+    <string name="teachers">Вчителі</string>
+    <string name="setting">Налаштування</string>
 </resources>
