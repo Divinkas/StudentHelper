@@ -1,48 +1,47 @@
 package com.example.divin.studenthelper;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.example.divin.studenthelper.adapter.RozkladAdapter;
-import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
-import com.example.divin.studenthelper.mvp.presenter.RozkladPresenter;
-import com.example.divin.studenthelper.mvp.view.IrozkladView;
+import com.example.divin.studenthelper.utils.FragmentViewer;
+import com.example.divin.studenthelper.utils.InstallMatherialMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends MvpAppCompatActivity implements IrozkladView {
+public class MainActivity extends BaseActivity {
+    public InstallMatherialMenu installMatherialMenu;
+    private FragmentViewer fragmentViewer;
 
-    @InjectPresenter
-    RozkladPresenter rozkladPresenter;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
 
-    @BindView(R.id.rvListRozklad)
-    RecyclerView rvListRozklad;
+    @BindView(R.id.drawerWords)
+    DrawerLayout drawerLayout;
+
+    @BindView(R.id.myNavigationView)
+    NavigationView myNavigationView;
+
+    @BindView(R.id.fragmentContainer)
+    LinearLayout fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        rozkladPresenter.setContext(MainActivity.this);
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
-        rozkladPresenter.loadRozklad();
-        rvListRozklad.setLayoutManager(new LinearLayoutManager(this));
-    }
 
-    @Override
-    public void renderData(List<List<RozkladObj>> data) {
-        rvListRozklad.setAdapter(new RozkladAdapter(this, data));
+        fragmentViewer = new FragmentViewer(this);
+        installMatherialMenu = new InstallMatherialMenu(MainActivity.this, toolbar, drawerLayout,
+                        myNavigationView, fragmentContainer, R.string.app_name, fragmentViewer);
     }
-
 
 }
