@@ -8,12 +8,12 @@ import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.FirebaseModel;
 import com.example.divin.studenthelper.mvp.model.ServerModel;
-import com.example.divin.studenthelper.mvp.view.IrozkladView;
+import com.example.divin.studenthelper.mvp.view.IteacherRozkladView;
 
 import java.util.List;
 
 @InjectViewState
-public class TeacherRozladPresenter extends MvpPresenter<IrozkladView> implements ILoadRozkladCallback {
+public class TeacherRozladPresenter extends MvpPresenter<IteacherRozkladView> implements ILoadRozkladCallback {
     private Context context;
     private ServerModel serverModel;
     private FirebaseModel firebaseModel;

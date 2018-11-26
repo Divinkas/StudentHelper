@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements ImainView {
     public static int KOD_ROLE = 4;
     public InstallMatherialMenu installMatherialMenu;
-    private FragmentViewer fragmentViewer;
+    public FragmentViewer fragmentViewer;
 
     @InjectPresenter
     public MainPresenter mainPresenter;
@@ -58,4 +58,5 @@ public class MainActivity extends BaseActivity implements ImainView {
     public void refreshMenu() {
         installMatherialMenu.refresh(KOD_ROLE);
     }
+
 }

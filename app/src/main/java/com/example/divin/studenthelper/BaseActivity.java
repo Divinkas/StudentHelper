@@ -8,5 +8,6 @@ public class BaseActivity extends MvpAppCompatActivity {
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         } else { super.onBackPressed(); }
+
     }
 }

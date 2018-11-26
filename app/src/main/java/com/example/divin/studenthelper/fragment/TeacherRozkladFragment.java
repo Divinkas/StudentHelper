@@ -11,18 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.example.divin.studenthelper.MainActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.adapter.RozkladAdapter;
+import com.example.divin.studenthelper.adapter.TeacherLectureAdapter;
+import com.example.divin.studenthelper.callback.IshowFragmentLectureById;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.presenter.TeacherRozladPresenter;
 import com.example.divin.studenthelper.mvp.view.IrozkladView;
+import com.example.divin.studenthelper.mvp.view.IteacherRozkladView;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TeacherRozkladFragment extends BaseFragment implements IrozkladView {
+public class TeacherRozkladFragment extends BaseFragment implements IteacherRozkladView, IshowFragmentLectureById {
     private Context context;
 
     @InjectPresenter
@@ -45,6 +50,17 @@ public class TeacherRozkladFragment extends BaseFragment implements IrozkladView
 
     @Override
     public void renderData(List<List<RozkladObj>> data) {
-        rvListRozklad.setAdapter(new RozkladAdapter(context, data));
+        rvListRozklad.setAdapter(new TeacherLectureAdapter(context, data, this));
     }
+
+    @Override
+    public void openFragment(int id) {
+        Bundle args = new Bundle();
+        args.putInt("id_items", id);
+        LectureIdFragment fragment = new LectureIdFragment();
+        fragment.setArguments(args);
+        ((MainActivity) Objects.requireNonNull(getActivity())).fragmentViewer.showFragment(fragment);
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.divin.studenthelper.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +18,7 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.example.divin.studenthelper.BaseActivity;
 import com.example.divin.studenthelper.LoginActivity;
 import com.example.divin.studenthelper.R;
+import com.example.divin.studenthelper.fragment.BaseFragment;
 import com.example.divin.studenthelper.fragment.RozkladFragment;
 import com.example.divin.studenthelper.fragment.TeacherFragment;
 import com.example.divin.studenthelper.fragment.TeacherRozkladFragment;
@@ -118,4 +120,5 @@ public class InstallMatherialMenu {
             navigationView.getMenu().setGroupVisible(R.id.menuStudentGroup, true);
         }
     }
+
 }
