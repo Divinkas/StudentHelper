@@ -17,7 +17,7 @@ import com.example.divin.studenthelper.mvp.model.Data.Teacher;
 import com.example.divin.studenthelper.mvp.model.Data.TypeZn;
 
 @Database(entities = {CategoryStudents.class, Days.class, Group.class, Para.class,
-            Predmet.class, Rozklad.class, Teacher.class, TypeZn.class},
+            Predmet.class, Rozklad.class, TypeZn.class},
             version = 1,
             exportSchema = false)
 public abstract class LocalDatabases extends RoomDatabase {

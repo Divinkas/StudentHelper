@@ -7,16 +7,39 @@
         android:icon="@drawable/format_align_justify"
         app:showAsAction="always"
         />
-    <item
-        android:id="@+id/menuTesting"
-        android:title="@string/testing"
-        android:icon="@drawable/learn"
-        />
+    <group
+        android:id="@+id/menuStudentGroup"
+        android:visible="false">
+        <item
+            android:id="@+id/menuTesting"
+            android:title="@string/testing"
+            android:icon="@drawable/learn"
+            />
+    </group>
     <item
         android:id="@+id/menuTeachers"
         android:title="@string/teachers"
         android:icon="@drawable/account_multiple_check"
         />
+
+    <group
+        android:id="@+id/menuTeacherGroup"
+        android:visible="false">
+        <item
+            android:id="@+id/menuVisited"
+            android:title="@string/visited"
+            android:icon="@drawable/alpha_h_box"/>
+        <item
+            android:id="@+id/menuMyLecture"
+            android:title="@string/my_lectures"
+            android:icon="@drawable/lead_pencil"
+            />
+        <item
+            android:id="@+id/menuTestingManager"
+            android:title="@string/test_manager"
+            android:icon="@drawable/format_list_checkbox"/>
+    </group>
+
     <group
         android:id="@+id/menuFirebaseGroup">
         <item

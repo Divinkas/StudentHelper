@@ -18,6 +18,8 @@ import com.example.divin.studenthelper.BaseActivity;
 import com.example.divin.studenthelper.LoginActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.fragment.RozkladFragment;
+import com.example.divin.studenthelper.fragment.TeacherFragment;
+import com.example.divin.studenthelper.fragment.TeacherRozkladFragment;
 import com.example.divin.studenthelper.mvp.model.FirebaseModel;
 
 public class InstallMatherialMenu {
@@ -27,10 +29,12 @@ public class InstallMatherialMenu {
     private FragmentViewer fragmentViewer;
     private View containerView;
     private BaseActivity activity;
+    private  NavigationView navigationView;
 
     public InstallMatherialMenu(BaseActivity baseActivity, Context context, Toolbar toolbar, DrawerLayout drawerLayout, NavigationView navigationView, LinearLayout fragmentContainer, int titleText, FragmentViewer fragmentViewer) {
         this.context = context;
         this.fragmentViewer = fragmentViewer;
+        this.navigationView = navigationView;
         activity = baseActivity;
         containerView = fragmentContainer;
         firebaseModel = new FirebaseModel(context);
@@ -78,7 +82,10 @@ public class InstallMatherialMenu {
                     fragmentViewer.showFragment(new RozkladFragment());
                     break;
                 case R.id.menuTeachers:
-                    Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
+                    fragmentViewer.showFragment(new TeacherFragment());
+                    break;
+                case R.id.menuMyLecture:
+                    fragmentViewer.showFragment(new TeacherRozkladFragment());
                     break;
                 case R.id.menuTesting:
                     Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
@@ -99,5 +106,16 @@ public class InstallMatherialMenu {
             drawerLayout.closeDrawer(navigationView);
             return false;
         });
+    }
+
+    public void refresh(int kodRole) {
+        if(kodRole == 3){
+            navigationView.getMenu().setGroupVisible(R.id.menuTeacherGroup, true);
+            navigationView.getMenu().setGroupVisible(R.id.menuStudentGroup, false);
+        }
+        if (kodRole == 2){
+            navigationView.getMenu().setGroupVisible(R.id.menuTeacherGroup, false);
+            navigationView.getMenu().setGroupVisible(R.id.menuStudentGroup, true);
+        }
     }
 }

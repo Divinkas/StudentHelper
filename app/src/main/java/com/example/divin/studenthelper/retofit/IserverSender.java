@@ -1,7 +1,10 @@
 package com.example.divin.studenthelper.retofit;
 
+import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
+import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 
 import java.util.List;
 
@@ -23,12 +26,24 @@ public interface IserverSender {
                                 @Field("name") String name,
                                 @Field("ident") String ident);
 
-    @GET("/Database/Versiondb")
-    Observable<Integer> getServerDbVersion();
+    @FormUrlEncoded
+    @POST("User/GetRoleUserByIdent")
+    Observable<UserRoleValue> getUserRole(@Field("ident") String ident);
+
 
     @FormUrlEncoded
     @POST("Rozklad/GetRozkladByGroupId")
     Observable<Rozklad_server_object> getRozklad(@Field("idGroup") int id, @Field("kodWeek") int kodWeek);
 
+    @GET("/Teacher")
+    Observable<List<Teacher>> getTeachers();
+
+    @FormUrlEncoded
+    @POST("Rozklad/getTeacherRozkl")
+    Observable<Rozklad_server_object> getTeacherRozkl(@Field("ident") String ident, @Field("kodWeek") int kod);
+
+    @FormUrlEncoded
+    @POST("Account/LectureAPI_byIdent")
+    Observable<LectureItem> getLectureData(@Field("ident") String ident, @Field("lecture_id") int lecture_id);
 
 }

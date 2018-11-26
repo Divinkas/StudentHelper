@@ -23,9 +23,6 @@ public interface IbaseDao {
     @Query("select * from Para")
     List<Para> getPara();
 
-    @Query("select * from Teacher")
-    List<Teacher> getTeachers();
-
     @Query("select * from TypeZn")
     List<TypeZn> getTypeZn();
 

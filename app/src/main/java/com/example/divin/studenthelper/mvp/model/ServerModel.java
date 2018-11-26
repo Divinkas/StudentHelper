@@ -4,10 +4,15 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.example.divin.studenthelper.MainActivity;
 import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
+import com.example.divin.studenthelper.callback.ILoadTeachersCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
+import com.example.divin.studenthelper.callback.IgetRoleCallback;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
+import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
 import com.example.divin.studenthelper.utils.DataHelper;
@@ -27,11 +32,43 @@ import retrofit2.Retrofit;
 public class ServerModel {
     private Context context;
     private IserverSender iserverSender;
+    private DataHelper dataHelper;
 
     public ServerModel(Context context) {
         this.context = context;
         Retrofit retrofit = RetrofitClient.getInstance();
         iserverSender = retrofit.create(IserverSender.class);
+        dataHelper = new DataHelper();
+    }
+
+    public void loadUserRole(String ident, IgetRoleCallback igetRoleCallback){
+        Observer<UserRoleValue>observer = new Observer<UserRoleValue>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(UserRoleValue userRoleValue) {
+                MainActivity.KOD_ROLE = userRoleValue.kod_roles;
+                igetRoleCallback.checkMenu();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getUserRole(ident)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 
     public void sendUserToServer(String mail, String name, String id) {
@@ -66,7 +103,6 @@ public class ServerModel {
 
             @Override
             public void onNext(Rozklad_server_object rozklad_server_object) {
-                DataHelper dataHelper = new DataHelper();
                 iLoadRozkladCallback.loadData(dataHelper.getRozkladObeckts(rozklad_server_object.rozkladObj));
             }
 
@@ -82,6 +118,61 @@ public class ServerModel {
         };
         iserverSender
                 .getRozklad(1,1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void loadTeacher(ILoadTeachersCallback iLoadTeachersCallback) {
+        Observer<List<Teacher>> observer = new Observer<List<Teacher>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Teacher> teacherList) {
+                iLoadTeachersCallback.loadTeachers(teacherList);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getTeachers()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void loadTeacherRozklad(String userId, ILoadRozkladCallback iLoadRozkladCallback) {
+        Observer<Rozklad_server_object> observer = new Observer<Rozklad_server_object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Rozklad_server_object rozklad_server_object) {
+                iLoadRozkladCallback.loadData(dataHelper.getRozkladObeckts(rozklad_server_object.rozkladObj));
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        };
+        iserverSender
+                .getTeacherRozkl(userId, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

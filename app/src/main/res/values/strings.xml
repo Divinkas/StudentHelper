@@ -12,6 +12,9 @@
     <string name="rozklad">Розклад</string>
     <string name="exit">Вихід</string>
     <string name="testing">Тестування</string>
-    <string name="teachers">Вчителі</string>
+    <string name="teachers">Викладачі</string>
     <string name="setting">Налаштування</string>
+    <string name="visited">Відвідування</string>
+    <string name="my_lectures">Мої лекції</string>
+    <string name="test_manager">Тест менеджер</string>
 </resources>
