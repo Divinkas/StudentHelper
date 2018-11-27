@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/tvIdLect"
+
+    <ViewSwitcher
+        android:id="@+id/swNextScreen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textColor="@color/colorAccent"/>
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite_"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/default_cat"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite_"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/etAudytValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:padding="15dp"
+                android:inputType="text"
+                android:textColor="@color/colorAccent"/>
+            <Spinner
+                android:id="@+id/spTimePara"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="25dp"/>
+            <Spinner
+                android:id="@+id/spTypePara"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="25dp"/>
+            <Button
+                android:id="@+id/btnSaveChanged"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="15dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite_"
+                android:background="@color/colorPrimary"
+                android:textSize="20sp"
+                android:text="@string/save_changed"/>
+        </LinearLayout>
+    </ViewSwitcher>
 </LinearLayout>

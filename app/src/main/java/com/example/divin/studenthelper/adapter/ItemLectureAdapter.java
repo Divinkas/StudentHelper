@@ -45,7 +45,6 @@ public class ItemLectureAdapter extends RecyclerView.Adapter<ItemLectureAdapter.
         holder.tvTypeZn.setText(list.get(position).typeZanyatya);
         holder.llContainer.setOnClickListener(v -> {
             int id = list.get(position).id;
-            Toast.makeText(context, "Id: " + id, Toast.LENGTH_SHORT).show();
             ishowFragmentLectureById.openFragment(id);
 
         });

@@ -9,6 +9,8 @@ import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.callback.ILoadTeachersCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
 import com.example.divin.studenthelper.callback.IgetRoleCallback;
+import com.example.divin.studenthelper.callback.IlectureCallback;
+import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
@@ -176,6 +178,36 @@ public class ServerModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+    public void loadLecuteById(String userId, int id, IlectureCallback ilectureCallback) {
+        Observer<LectureItem> observer = new Observer<LectureItem>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(LectureItem lectureItem) {
+                ilectureCallback.lectureLoaded(lectureItem);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getLectureDataById(userId, id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+
     }
 }
 

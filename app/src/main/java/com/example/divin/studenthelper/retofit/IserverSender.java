@@ -44,6 +44,7 @@ public interface IserverSender {
 
     @FormUrlEncoded
     @POST("Account/LectureAPI_byIdent")
-    Observable<LectureItem> getLectureData(@Field("ident") String ident, @Field("lecture_id") int lecture_id);
+    Observable<LectureItem> getLectureDataById(@Field("ident") String ident, @Field("lecture_id") int lecture_id);
+
 
 }

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.callback.IshowFragmentLectureById;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
-import com.example.divin.studenthelper.mvp.presenter.TeacherRozladPresenter;
 
 import java.util.List;
 
