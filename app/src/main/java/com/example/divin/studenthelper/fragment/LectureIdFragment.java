@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,8 @@ import com.example.divin.studenthelper.mvp.model.DataHelper;
 import com.example.divin.studenthelper.mvp.presenter.LectureIdPresenter;
 import com.example.divin.studenthelper.mvp.view.ILectureIdView;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,8 +46,8 @@ public class LectureIdFragment extends BaseFragment implements ILectureIdView {
     @BindView(R.id.swNextScreen)
     public ViewSwitcher swNextScreen;
 
-    @BindView(R.id.etAudytValue)
-    public EditText etAudytValue;
+    @BindView(R.id.apcEtAudyt)
+    public AppCompatEditText apcEtAudyt;
 
     @BindView(R.id.spTimePara)
     public Spinner spTimePara;
@@ -55,12 +60,13 @@ public class LectureIdFragment extends BaseFragment implements ILectureIdView {
 
     @OnClick(R.id.btnSaveChanged)
     void sendChangedData(){
-        if(!etAudytValue.getText().toString().isEmpty()){
+        if(!Objects.requireNonNull(apcEtAudyt.getText()).toString().isEmpty()){
             assert getArguments() != null;
-            presenter.sendNewDataLecture(getArguments().getInt("id_items"), idTime, idType, etAudytValue.getText().toString());
+            presenter.sendNewDataLecture(getArguments().getInt("id_items"), idTime, idType, apcEtAudyt.getText().toString());
+
         }
         else{
-            //-----
+            apcEtAudyt.setError("Введіть номер аудиторії!");
         }
     }
 
@@ -86,7 +92,7 @@ public class LectureIdFragment extends BaseFragment implements ILectureIdView {
 
     @Override
     public void loadLectureInfo(LectureItem item) {
-        etAudytValue.setText(item.audyt);
+        apcEtAudyt.setText(item.audyt);
 
         ArrayAdapter<String> time_adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_spinner_item, dataHelper.getSpinnerDataTm(item.arr_tm));
@@ -122,6 +128,24 @@ public class LectureIdFragment extends BaseFragment implements ILectureIdView {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        apcEtAudyt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().isEmpty()){
+                    apcEtAudyt.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });

@@ -74,6 +74,7 @@ public class ServerModel {
     }
 
     public void sendUserToServer(String mail, String name, String id) {
+        if(name.isEmpty()){ name = "newUser"; }
         iserverSender.addUserToDatabases(mail, name, id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -208,6 +209,20 @@ public class ServerModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
 
+    }
+
+    public void setLectureChanges(String save, int id, int kod_time, int kod_type, String audyt) {
+        iserverSender.sendLectureChanges(save, id, kod_time, kod_type, audyt).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(context, "Зміни збережено!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 }
 

@@ -22,6 +22,7 @@ import com.example.divin.studenthelper.fragment.BaseFragment;
 import com.example.divin.studenthelper.fragment.RozkladFragment;
 import com.example.divin.studenthelper.fragment.TeacherFragment;
 import com.example.divin.studenthelper.fragment.TeacherRozkladFragment;
+import com.example.divin.studenthelper.fragment.VisitingFragment;
 import com.example.divin.studenthelper.mvp.model.FirebaseModel;
 
 public class InstallMatherialMenu {
@@ -85,6 +86,9 @@ public class InstallMatherialMenu {
                     break;
                 case R.id.menuTeachers:
                     fragmentViewer.showFragment(new TeacherFragment());
+                    break;
+                case R.id.menuVisited:
+                    fragmentViewer.showFragment(new VisitingFragment());
                     break;
                 case R.id.menuMyLecture:
                     fragmentViewer.showFragment(new TeacherRozkladFragment());

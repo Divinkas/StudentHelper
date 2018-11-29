@@ -37,6 +37,6 @@ public class LectureIdPresenter extends MvpPresenter<ILectureIdView> implements 
     }
 
     public void sendNewDataLecture(int id, int kod_time, int kod_type, String audyt) {
-
+        serverModel.setLectureChanges("save", id, kod_time, kod_type, audyt);
     }
 }

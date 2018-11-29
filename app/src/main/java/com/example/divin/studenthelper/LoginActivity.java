@@ -2,6 +2,7 @@ package com.example.divin.studenthelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,12 +20,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +83,21 @@ public class LoginActivity extends MvpAppCompatActivity implements Iauthorizatio
                 apcEtLogin.setError("Введіть логін!");
             }
         } else {
-            loginPresenter.signIn(apcEtLogin.getText().toString(), apcEtPassword.getText().toString());
+            //loginPresenter.signIn(apcEtLogin.getText().toString(), apcEtPassword.getText().toString());
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
+            if(user == null) {
+                mAuth.signInWithEmailAndPassword(apcEtLogin.getText().toString(), apcEtPassword.getText().toString())
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                openMainActivity();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                successAuth(false);
+                            }
+
+                        });
+            }
         }
     }
 

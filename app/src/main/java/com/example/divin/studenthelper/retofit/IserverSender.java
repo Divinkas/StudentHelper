@@ -3,6 +3,7 @@ package com.example.divin.studenthelper.retofit;
 import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
+import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 
@@ -22,9 +23,13 @@ public interface IserverSender {
 
     @FormUrlEncoded
     @POST("User/Index")
-    Call<Void> addUserToDatabases(@Field("mail") String mail,
-                                @Field("name") String name,
+    Call<Void> addUserToDatabases(@Field("mail") String mail, @Field("name") String name,
                                 @Field("ident") String ident);
+    @FormUrlEncoded
+    @POST("Account/LecturesId")
+    Call<Void> sendLectureChanges(@Field("saved") String saved, @Field("id_roz") int id,
+                                @Field("time_val") int kod_time, @Field("type_zn") int kod_type,
+                                  @Field("audyt") String audyt);
 
     @FormUrlEncoded
     @POST("User/GetRoleUserByIdent")
@@ -45,6 +50,10 @@ public interface IserverSender {
     @FormUrlEncoded
     @POST("Account/LectureAPI_byIdent")
     Observable<LectureItem> getLectureDataById(@Field("ident") String ident, @Field("lecture_id") int lecture_id);
+
+    @FormUrlEncoded
+    @POST("Student/Index")
+    Observable<List<StudentInfo>> getListStudentByGroupId(@Field("kod_g") int kod_g);
 
 
 }

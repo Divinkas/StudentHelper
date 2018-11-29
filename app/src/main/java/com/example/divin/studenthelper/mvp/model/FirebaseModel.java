@@ -17,34 +17,15 @@ public class FirebaseModel {
     public FirebaseModel(Context context) {
         this.context = context;
         mAuth = FirebaseAuth.getInstance();
-
+        user = mAuth.getCurrentUser();
     }
 
     public void signUp(String email, String password, IsuccessAuthCallback isuccessAuthCallback){
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        isuccessAuthCallback.resultAuthentication(true);
-                    } else {
-                        Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
-                        isuccessAuthCallback.resultAuthentication(false);
-                    }
-           });
+
     }
 
     public void signIn(String email, String password, IsuccessAuthCallback isuccessAuthCallback){
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        isuccessAuthCallback.resultAuthentication(true);
-                    } else {
-                        Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        isuccessAuthCallback.resultAuthentication(false);
-                    }
 
-                });
     }
 
     public String getMailUser(){
