@@ -19,4 +19,5 @@
     <string name="test_manager">Тест менеджер</string>
     <string name="save_changed">Зберегти зміни</string>
     <string name="audytoriya">Аудиторія</string>
+    <string name="date_p">Дата проведення</string>
 </resources>

@@ -19,11 +19,13 @@ public class TeacherLectureAdapter  extends RecyclerView.Adapter<TeacherLectureA
     private Context context;
     private List<List<RozkladObj>> list;
     private IshowFragmentLectureById callback;
+    private int kodF;
 
-    public TeacherLectureAdapter(Context context, List<List<RozkladObj>> list, IshowFragmentLectureById ishowFragmentLectureById) {
+    public TeacherLectureAdapter(Context context, List<List<RozkladObj>> list, IshowFragmentLectureById ishowFragmentLectureById, int kodF) {
         this.context = context;
         this.list = list;
         this.callback = ishowFragmentLectureById;
+        this.kodF = kodF;
     }
 
     @NonNull
@@ -38,7 +40,7 @@ public class TeacherLectureAdapter  extends RecyclerView.Adapter<TeacherLectureA
         holder.setIsRecyclable(false);
         holder.tvNameDay.setText(list.get(position).get(0).dayName);
         holder.rvListRozklad.setLayoutManager(new LinearLayoutManager(context));
-        holder.rvListRozklad.setAdapter(new ItemLectureAdapter(context, list.get(position), callback));
+        holder.rvListRozklad.setAdapter(new ItemLectureAdapter(context, list.get(position), callback, kodF));
     }
 
     @Override

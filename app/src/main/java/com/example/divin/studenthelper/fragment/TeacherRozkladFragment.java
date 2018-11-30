@@ -16,6 +16,7 @@ import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.adapter.RozkladAdapter;
 import com.example.divin.studenthelper.adapter.TeacherLectureAdapter;
 import com.example.divin.studenthelper.callback.IshowFragmentLectureById;
+import com.example.divin.studenthelper.mvp.model.Constant;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.presenter.TeacherRozladPresenter;
 import com.example.divin.studenthelper.mvp.view.IrozkladView;
@@ -49,7 +50,7 @@ public class TeacherRozkladFragment extends BaseFragment implements IteacherRozk
 
     @Override
     public void renderData(List<List<RozkladObj>> data) {
-        rvListRozklad.setAdapter(new TeacherLectureAdapter(context, data, this));
+        rvListRozklad.setAdapter(new TeacherLectureAdapter(context, data, this, Constant.ROZKLAD_KOD));
     }
 
     @Override
@@ -59,6 +60,11 @@ public class TeacherRozkladFragment extends BaseFragment implements IteacherRozk
         LectureIdFragment fragment = new LectureIdFragment();
         fragment.setArguments(args);
         ((MainActivity) Objects.requireNonNull(getActivity())).fragmentViewer.showFragment(fragment);
+    }
+
+    @Override
+    public void getDataFragment(int id, String namePara) {
+
     }
 
     @Override

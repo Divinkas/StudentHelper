@@ -20,11 +20,13 @@ public class ItemLectureAdapter extends RecyclerView.Adapter<ItemLectureAdapter.
     private Context context;
     private List<RozkladObj> list;
     private IshowFragmentLectureById ishowFragmentLectureById;
+    private int kodF;
 
-    ItemLectureAdapter(Context context, List<RozkladObj> list, IshowFragmentLectureById ishowFragmentLectureById) {
+    ItemLectureAdapter(Context context, List<RozkladObj> list, IshowFragmentLectureById ishowFragmentLectureById, int kodF) {
         this.context = context;
         this.list = list;
         this.ishowFragmentLectureById = ishowFragmentLectureById;
+        this.kodF = kodF;
     }
 
     @NonNull
@@ -45,8 +47,11 @@ public class ItemLectureAdapter extends RecyclerView.Adapter<ItemLectureAdapter.
         holder.tvTypeZn.setText(list.get(position).typeZanyatya);
         holder.llContainer.setOnClickListener(v -> {
             int id = list.get(position).id;
-            ishowFragmentLectureById.openFragment(id);
-
+            if(kodF == 0){
+                ishowFragmentLectureById.openFragment(id);
+            }else {
+                ishowFragmentLectureById.getDataFragment(id, list.get(position).namePredm);
+            }
         });
     }
 

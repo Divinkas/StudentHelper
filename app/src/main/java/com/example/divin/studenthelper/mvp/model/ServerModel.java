@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.divin.studenthelper.MainActivity;
+import com.example.divin.studenthelper.callback.IListStudentsCallback;
 import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.callback.ILoadTeachersCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
@@ -13,6 +14,7 @@ import com.example.divin.studenthelper.callback.IlectureCallback;
 import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
+import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 import com.example.divin.studenthelper.retofit.IserverSender;
@@ -223,6 +225,35 @@ public class ServerModel {
 
             }
         });
+    }
+
+    public void loadListStudentsByKodGroup(int id, IListStudentsCallback callback){
+        Observer<List<StudentInfo>> observer = new Observer<List<StudentInfo>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<StudentInfo> studentInfos) {
+                callback.setListStudents(studentInfos);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getListStudentByGroupId(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 }
 
