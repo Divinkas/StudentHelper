@@ -13,15 +13,18 @@ import android.widget.TextView;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapter.StudentsViewHolder> {
     private Context context;
     private List<StudentInfo> list;
+    private boolean[] arr_visit;
 
     public StudentsListAdapter(Context context, List<StudentInfo> list) {
         this.context = context;
         this.list = list;
+        arr_visit = new boolean[list.size()];
     }
 
     @NonNull
@@ -36,14 +39,30 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
         holder.setIsRecyclable(false);
         holder.tv_student_name.setText(list.get(position).PIB);
         holder.ll_student_item_container.setOnClickListener(v -> {
-            if(holder.cbx_student_checked.isChecked()) { holder.cbx_student_checked.setChecked(false); }
-            else{ holder.cbx_student_checked.setChecked(true); }
+            if(holder.cbx_student_checked.isChecked()) {
+                holder.cbx_student_checked.setChecked(false);
+                arr_visit[position] = false;
+            }
+            else{
+                holder.cbx_student_checked.setChecked(true);
+                arr_visit[position] = true;
+            }
         });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public String getVisitedStudents() {
+        StringBuilder visited = new StringBuilder();
+        for (int i = 0; i < list.size(); i++){
+            if(arr_visit[i]){
+                visited.append(list.get(i).PIB).append(", ");
+            }
+        }
+        return visited.toString();
     }
 
     class StudentsViewHolder extends RecyclerView.ViewHolder{

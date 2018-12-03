@@ -27,6 +27,10 @@ public class VisitedIdLecturePresenter extends MvpPresenter<IvisitedLectureIdVie
         }
     }
 
+    public void send_data(String list_student, String data, int id_rozkl){
+        serverModel.send_visit(list_student, data, id_rozkl);
+    }
+
     public void loadStudentsByGroupId(int id){
         serverModel.loadListStudentsByKodGroup(id, this);
     }

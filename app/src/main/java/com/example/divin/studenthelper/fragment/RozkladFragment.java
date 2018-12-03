@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.example.divin.studenthelper.MainActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.adapter.RozkladAdapter;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
@@ -18,6 +19,7 @@ import com.example.divin.studenthelper.mvp.presenter.RozkladPresenter;
 import com.example.divin.studenthelper.mvp.view.IrozkladView;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,5 +48,11 @@ public class RozkladFragment extends BaseFragment implements IrozkladView {
     @Override
     public void renderData(List<List<RozkladObj>> data) {
         rvListRozklad.setAdapter(new RozkladAdapter(context, data));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)Objects.requireNonNull(getActivity())).toolbar.setTitle("Розклад");
     }
 }

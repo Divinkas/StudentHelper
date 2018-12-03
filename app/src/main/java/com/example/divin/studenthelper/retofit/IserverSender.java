@@ -22,6 +22,11 @@ import retrofit2.http.Query;
 public interface IserverSender {
 
     @FormUrlEncoded
+    @POST("Account/CheckVisit")
+    Call<Void> add_visit_students(@Field("list_student") String list, @Field("data_visit") String data_visit,
+                                  @Field("id_r") int id_r);
+
+    @FormUrlEncoded
     @POST("User/Index")
     Call<Void> addUserToDatabases(@Field("mail") String mail, @Field("name") String name,
                                 @Field("ident") String ident);

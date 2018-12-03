@@ -71,5 +71,6 @@ public class TeacherRozkladFragment extends BaseFragment implements IteacherRozk
     public void onResume() {
         super.onResume();
         presenter.loadRozklad();
+        ((MainActivity)Objects.requireNonNull(getActivity())).toolbar.setTitle("Мій розклад");
     }
 }

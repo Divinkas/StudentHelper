@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.example.divin.studenthelper.MainActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.adapter.TeacherAdapter;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
@@ -18,6 +19,7 @@ import com.example.divin.studenthelper.mvp.presenter.TeacherPresenter;
 import com.example.divin.studenthelper.mvp.view.IteacherView;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,5 +47,11 @@ public class TeacherFragment extends BaseFragment implements IteacherView {
     @Override
     public void renderTeachers(List<Teacher> teacherList) {
         rv_teacher_list.setAdapter(new TeacherAdapter(context, teacherList));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)Objects.requireNonNull(getActivity())).toolbar.setTitle("Викладачі");
     }
 }

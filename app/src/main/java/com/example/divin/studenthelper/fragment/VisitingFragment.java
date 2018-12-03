@@ -65,12 +65,12 @@ public class VisitingFragment extends BaseFragment implements IteacherRozkladVie
         VisitedIdLectureFragment fragment = new VisitedIdLectureFragment();
         fragment.setArguments(args);
         ((MainActivity) Objects.requireNonNull(getActivity())).fragmentViewer.showFragment(fragment);
-        Toast.makeText(context, "open para: " + id, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         presenter.loadRozklad();
+        ((MainActivity)Objects.requireNonNull(getActivity())).toolbar.setTitle("Відвідування");
     }
 }

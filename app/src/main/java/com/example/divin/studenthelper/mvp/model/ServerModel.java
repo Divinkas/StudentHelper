@@ -255,6 +255,20 @@ public class ServerModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+
+    public void send_visit(String list_student, String data, int id_rozkl) {
+        iserverSender.add_visit_students(list_student, data,id_rozkl).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(context, "Дані збережено!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 }
 
 
