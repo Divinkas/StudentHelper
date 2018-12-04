@@ -5,6 +5,7 @@ import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.TestItem;
 import com.example.divin.studenthelper.mvp.model.Data.TestList;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 
@@ -71,4 +72,8 @@ public interface IserverSender {
     @FormUrlEncoded
     @POST("Teacher/GetAccessTestById")
     Observable<List<TestList>> get_access_TestList(@Field("user_ident") String user_id);
+
+    @FormUrlEncoded
+    @POST("TestStudent/GetTestBodyById")
+    Observable<List<TestItem>> get_full_test_list(@Field("id") int id_test);
 }

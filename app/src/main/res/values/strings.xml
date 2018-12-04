@@ -22,4 +22,6 @@
     <string name="date_p">Дата проведення</string>
     <string name="open_close">Відкрити/Закрити</string>
     <string name="result_test">Результати</string>
+    <string name="ans">Відповісти</string>
+    <string name="progress_example">10/15</string>
 </resources>

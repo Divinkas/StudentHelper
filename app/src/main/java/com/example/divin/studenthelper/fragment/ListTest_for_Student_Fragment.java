@@ -63,6 +63,11 @@ public class ListTest_for_Student_Fragment extends BaseFragment implements I_tes
 
     @Override
     public void open_test_by_id(int id_test) {
-        Toast.makeText(getContext(), "id: " + id_test, Toast.LENGTH_SHORT).show();
+        Bundle args = new Bundle();
+        args.putInt("id_test", id_test);
+        TestRunFragment fragment = new TestRunFragment();
+        fragment.setArguments(args);
+        ((MainActivity) Objects.requireNonNull(getActivity())).fragmentViewer.showFragment(fragment);
+
     }
 }
