@@ -9,6 +9,7 @@ import com.example.divin.studenthelper.callback.IListStudentsCallback;
 import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.callback.ILoadTeachersCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
+import com.example.divin.studenthelper.callback.I_list_test_load_callback;
 import com.example.divin.studenthelper.callback.IgetRoleCallback;
 import com.example.divin.studenthelper.callback.IlectureCallback;
 import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
@@ -16,7 +17,9 @@ import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.TestList;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
+import com.example.divin.studenthelper.mvp.presenter.ListTestPresenter;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
 import com.example.divin.studenthelper.utils.DataHelper;
@@ -268,6 +271,80 @@ public class ServerModel {
 
             }
         });
+    }
+
+    public void load_test_list(String userId, I_list_test_load_callback callback) {
+        Observer<List<TestList>> observer = new Observer<List<TestList>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<TestList> testLists) {
+                callback.load_list(testLists);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        iserverSender
+                .getTestList(userId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void change_status(boolean isOpen, int id_test_name) {
+        int status = 0;
+        if (isOpen){ status = 1; }
+        iserverSender.change_status_test(id_test_name, status).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(isOpen){ Toast.makeText(context, "Тест відкрито!", Toast.LENGTH_SHORT).show(); }
+                else { Toast.makeText(context, "Тест закрито.", Toast.LENGTH_SHORT).show();  }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void load_access_test(String userId, I_list_test_load_callback callback) {
+        iserverSender
+                .get_access_TestList(userId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<TestList>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<TestList> testLists) {
+                        callback.load_list(testLists);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
 

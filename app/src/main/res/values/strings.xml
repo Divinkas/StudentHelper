@@ -20,4 +20,6 @@
     <string name="save_changed">Зберегти зміни</string>
     <string name="audytoriya">Аудиторія</string>
     <string name="date_p">Дата проведення</string>
+    <string name="open_close">Відкрити/Закрити</string>
+    <string name="result_test">Результати</string>
 </resources>

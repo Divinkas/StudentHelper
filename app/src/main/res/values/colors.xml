@@ -10,4 +10,7 @@
     <color name="colorGray_">#ccc</color>
     <color name="colorWhite_">#fff</color>
     <color name="LightGray_">#f7f7f7</color>
+
+    <color name="color_test_open">#9fff87</color>
+    <color name="color_test_close">#ef8250</color>
 </resources>

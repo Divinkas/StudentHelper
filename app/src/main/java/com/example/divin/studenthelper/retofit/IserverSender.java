@@ -5,6 +5,7 @@ import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.TestList;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 
 import java.util.List;
@@ -21,6 +22,9 @@ import retrofit2.http.Query;
 
 public interface IserverSender {
 
+    @FormUrlEncoded
+    @POST("Teacher/ChangeSTatus")
+    Call<Void> change_status_test(@Field("id_test") int id_test, @Field("new_status") int new_status);
     @FormUrlEncoded
     @POST("Account/CheckVisit")
     Call<Void> add_visit_students(@Field("list_student") String list, @Field("data_visit") String data_visit,
@@ -60,5 +64,11 @@ public interface IserverSender {
     @POST("Student/Index")
     Observable<List<StudentInfo>> getListStudentByGroupId(@Field("kod_g") int kod_g);
 
+    @FormUrlEncoded
+    @POST("Teacher/GetTestList")
+    Observable<List<TestList>> getTestList(@Field("user_ident") String user_id);
 
+    @FormUrlEncoded
+    @POST("Teacher/GetAccessTestById")
+    Observable<List<TestList>> get_access_TestList(@Field("user_ident") String user_id);
 }

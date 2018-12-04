@@ -19,9 +19,11 @@ import com.example.divin.studenthelper.BaseActivity;
 import com.example.divin.studenthelper.LoginActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.fragment.BaseFragment;
+import com.example.divin.studenthelper.fragment.ListTest_for_Student_Fragment;
 import com.example.divin.studenthelper.fragment.RozkladFragment;
 import com.example.divin.studenthelper.fragment.TeacherFragment;
 import com.example.divin.studenthelper.fragment.TeacherRozkladFragment;
+import com.example.divin.studenthelper.fragment.TestManagerFragment;
 import com.example.divin.studenthelper.fragment.VisitingFragment;
 import com.example.divin.studenthelper.mvp.model.FirebaseModel;
 
@@ -94,7 +96,10 @@ public class InstallMatherialMenu {
                     fragmentViewer.showFragment(new TeacherRozkladFragment());
                     break;
                 case R.id.menuTesting:
-                    Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
+                    fragmentViewer.showFragment(new ListTest_for_Student_Fragment());
+                    break;
+                case R.id.menuTestingManager:
+                    fragmentViewer.showFragment(new TestManagerFragment());
                     break;
                 case R.id.menuSetting:
                     Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
