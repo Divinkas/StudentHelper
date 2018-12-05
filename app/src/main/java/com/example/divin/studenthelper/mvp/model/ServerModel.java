@@ -10,16 +10,21 @@ import com.example.divin.studenthelper.callback.ILoadRozkladCallback;
 import com.example.divin.studenthelper.callback.ILoadTeachersCallback;
 import com.example.divin.studenthelper.callback.ISynchronizeCallback;
 import com.example.divin.studenthelper.callback.I_list_test_load_callback;
+import com.example.divin.studenthelper.callback.I_load_result_callback;
+import com.example.divin.studenthelper.callback.I_load_testData_callback;
 import com.example.divin.studenthelper.callback.IgetRoleCallback;
 import com.example.divin.studenthelper.callback.IlectureCallback;
 import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
+import com.example.divin.studenthelper.mvp.model.Data.ResultTestInfo;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
 import com.example.divin.studenthelper.mvp.model.Data.Teacher;
+import com.example.divin.studenthelper.mvp.model.Data.TestItem;
 import com.example.divin.studenthelper.mvp.model.Data.TestList;
 import com.example.divin.studenthelper.mvp.model.Data.UserRoleValue;
 import com.example.divin.studenthelper.mvp.presenter.ListTestPresenter;
+import com.example.divin.studenthelper.mvp.presenter.TestRunPresenter;
 import com.example.divin.studenthelper.retofit.IserverSender;
 import com.example.divin.studenthelper.retofit.RetrofitClient;
 import com.example.divin.studenthelper.utils.DataHelper;
@@ -277,7 +282,6 @@ public class ServerModel {
         Observer<List<TestList>> observer = new Observer<List<TestList>>() {
             @Override
             public void onSubscribe(Disposable d) {
-
             }
 
             @Override
@@ -287,12 +291,10 @@ public class ServerModel {
 
             @Override
             public void onError(Throwable e) {
-
             }
 
             @Override
             public void onComplete() {
-
             }
         };
         iserverSender
@@ -327,12 +329,78 @@ public class ServerModel {
                 .subscribe(new Observer<List<TestList>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
                     public void onNext(List<TestList> testLists) {
                         callback.load_list(testLists);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    public void load_test_info(int id_test, I_load_testData_callback callback) {
+        iserverSender
+                .get_full_test_list(id_test)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<TestItem>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(List<TestItem> testItems) {
+                        callback.load_data(testItems);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    public void send_test_result(int id_test, String right_answers, String userId) {
+        iserverSender
+                .send_test_result(right_answers, id_test, userId)
+                .enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(context, "Результат збережено!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void load_test_results(String user_id, I_load_result_callback callback){
+        iserverSender
+                .get_test_results_by_id(user_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<ResultTestInfo>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<ResultTestInfo> resultTestInfos) {
+                        callback.result_access(resultTestInfos);
                     }
 
                     @Override

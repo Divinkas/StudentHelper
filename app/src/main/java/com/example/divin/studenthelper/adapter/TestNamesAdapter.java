@@ -47,13 +47,13 @@ public class TestNamesAdapter extends RecyclerView.Adapter<TestViewHolder> {
         holder.ll_test_name_item_container.setOnClickListener(v -> {
             if (list.get(position).status == 0) {
                 presenter.setStatus(true, list.get(position).id);
-                holder.ll_test_name_item_container.setBackgroundColor(Color.rgb(159, 255, 135));
+                holder.ll_test_name_item_container.setBackgroundColor(Color.rgb(214, 255, 204));
                 list.get(position).status = 1;
 
             }
             else{
                 presenter.setStatus(false, list.get(position).id);
-                holder.ll_test_name_item_container.setBackgroundColor(Color.rgb(239, 130, 80));
+                holder.ll_test_name_item_container.setBackgroundColor(Color.rgb(255, 204, 181));
                 list.get(position).status = 0;
             }
         });

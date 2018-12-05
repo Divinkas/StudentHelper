@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:padding="10dp"
+    android:background="@color/LightGray_"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_student_name_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:layout_weight="2"
+        android:text="@string/ivanov_i_i"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tv_student_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_weight="7"
+        android:textStyle="bold"
+        android:text="@string/_4_4"
+        android:textColor="@color/colorPrimary"/>
+</LinearLayout>

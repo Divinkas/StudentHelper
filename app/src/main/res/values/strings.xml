@@ -24,4 +24,7 @@
     <string name="result_test">Результати</string>
     <string name="ans">Відповісти</string>
     <string name="progress_example">10/15</string>
+    <string name="zero">0</string>
+    <string name="ivanov_i_i">Ivanov I. I.</string>
+    <string name="_4_4">4/4</string>
 </resources>

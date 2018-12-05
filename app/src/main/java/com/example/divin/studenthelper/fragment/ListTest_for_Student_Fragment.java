@@ -9,16 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.divin.studenthelper.MainActivity;
 import com.example.divin.studenthelper.R;
 import com.example.divin.studenthelper.adapter.TestName_student_Adapter;
-import com.example.divin.studenthelper.adapter.TestNamesAdapter;
 import com.example.divin.studenthelper.callback.I_open_test_callback;
 import com.example.divin.studenthelper.mvp.model.Data.TestList;
-import com.example.divin.studenthelper.mvp.presenter.ListTestPresenter;
 import com.example.divin.studenthelper.mvp.presenter.ListTest_for_student_Presenter;
 import com.example.divin.studenthelper.mvp.view.I_test_list_view;
 

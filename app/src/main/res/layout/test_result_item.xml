@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/ll_result_container"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_test_name_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="24sp"/>
+    <TextView
+        android:id="@+id/tv_name_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:layout_marginEnd="20dp"
+        android:text="123"
+        android:layout_marginBottom="10dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_test_result_by_id"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.divin.studenthelper.retofit;
 
 import com.example.divin.studenthelper.mvp.model.Data.LectureItem;
+import com.example.divin.studenthelper.mvp.model.Data.ResultTestInfo;
 import com.example.divin.studenthelper.mvp.model.Data.RozkladObj;
 import com.example.divin.studenthelper.mvp.model.Data.Rozklad_server_object;
 import com.example.divin.studenthelper.mvp.model.Data.StudentInfo;
@@ -26,6 +27,13 @@ public interface IserverSender {
     @FormUrlEncoded
     @POST("Teacher/ChangeSTatus")
     Call<Void> change_status_test(@Field("id_test") int id_test, @Field("new_status") int new_status);
+
+    @FormUrlEncoded
+    @POST("TestStudent/SendResult")
+    Call<Void> send_test_result(@Field("result_value") String result,
+                                @Field("id_test") int id_test,
+                                @Field("user_ident") String user_ident);
+
     @FormUrlEncoded
     @POST("Account/CheckVisit")
     Call<Void> add_visit_students(@Field("list_student") String list, @Field("data_visit") String data_visit,
@@ -71,9 +79,13 @@ public interface IserverSender {
 
     @FormUrlEncoded
     @POST("Teacher/GetAccessTestById")
-    Observable<List<TestList>> get_access_TestList(@Field("user_ident") String user_id);
+    Observable<List<TestList>> get_access_TestList(@Field("ident") String user_id);
 
     @FormUrlEncoded
     @POST("TestStudent/GetTestBodyById")
     Observable<List<TestItem>> get_full_test_list(@Field("id") int id_test);
+
+    @FormUrlEncoded
+    @POST("Teacher/GetTestResultById")
+    Observable<List<ResultTestInfo>> get_test_results_by_id(@Field("ident") String user_id);
 }

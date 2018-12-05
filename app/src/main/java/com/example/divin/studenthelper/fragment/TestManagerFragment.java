@@ -27,7 +27,7 @@ public class TestManagerFragment extends BaseFragment {
 
     @OnClick(R.id.btn_show_test_results)
     void show_test_result(){
-
+        ((MainActivity)Objects.requireNonNull(getActivity())).fragmentViewer.showFragment(new TestResultFragment());
     }
 
     @OnClick(R.id.btn_open_test_by_id)
