@@ -101,9 +101,7 @@ public class InstallMatherialMenu {
                 case R.id.menuTestingManager:
                     fragmentViewer.showFragment(new TestManagerFragment());
                     break;
-                case R.id.menuSetting:
-                    Toast.makeText(context, "+", Toast.LENGTH_SHORT).show();
-                    break;
+
                 case R.id.menuExit:
                     firebaseModel.exit();
                     Intent intent = new Intent(context, LoginActivity.class);

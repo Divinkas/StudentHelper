@@ -40,14 +40,7 @@
             android:icon="@drawable/format_list_checkbox"/>
     </group>
 
-    <group
-        android:id="@+id/menuFirebaseGroup">
-        <item
-            android:id="@+id/menuSetting"
-            android:title="@string/setting"
-            android:icon="@drawable/settings"
-            />
-    </group>
+
     <item
         android:id="@+id/menuExit"
         android:title="@string/exit"
